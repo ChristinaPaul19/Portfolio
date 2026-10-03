@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Axiom Tuition Centre — Marks follow understanding</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7fc;--ink:#13213d;--mute:#4f5e79;--card:#fff;--line:rgba(19,33,61,.14);--blue:#2f5bea;--amber:#ffc247;--mint:#22a67e;--red:#e5484d;
+--disp:'Bricolage Grotesque','Trebuchet MS',Arial,sans-serif;--body:'Figtree','Segoe UI',Arial,sans-serif;--hand:'Caveat','Segoe Print',cursive;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1628;--ink:#eaf0ff;--mute:#a3b0cb;--card:#17223a;--line:rgba(234,240,255,.16);--blue:#7b9bff}}
+:root[data-theme="dark"]{--bg:#0e1628;--ink:#eaf0ff;--mute:#a3b0cb;--card:#17223a;--line:rgba(234,240,255,.16);--blue:#7b9bff}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 18px/1.7 var(--body);overflow-x:hidden}
+h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,6.2vw,5rem)}h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-bottom:1rem}h3{font-size:1.4rem}
+p{color:var(--mute);max-width:58ch}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:calc(10px + env(safe-area-inset-top,0px)) 5vw 10px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:.6rem;font:800 1.25rem var(--disp);color:var(--ink);text-decoration:none}
+.logo i{display:grid;place-items:center;width:2.2rem;height:2.2rem;background:var(--blue);color:#fff;border-radius:10px 10px 10px 2px;font-style:normal;font-size:1.1rem}
+nav{display:flex;gap:1.5rem;align-items:center}nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.98rem}
+nav a:hover{color:var(--blue)}
+.pill{display:inline-block;background:var(--blue);color:#fff!important;padding:.7rem 1.4rem;border-radius:99px;font:600 1rem var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 20px -8px var(--blue)}
+.pill:hover{transform:translateY(-2px)}
+.pill.alt{background:transparent;color:var(--ink)!important;border:2px solid var(--ink);box-shadow:none}
+@media(max-width:760px){nav a:not(.pill){display:none}}
+.bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--amber);transform-origin:0 50%;transform:scaleX(0);z-index:40}
+section{padding:12vh 6vw}
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;gap:5vw;align-items:center;padding-top:16vh;position:relative;overflow:hidden}
+.hero p{font-size:1.2rem;margin:1.4rem 0 2rem}.btns{display:flex;gap:1rem;flex-wrap:wrap}
+.chip{position:absolute;padding:.4rem 1rem;border-radius:99px;font:600 .95rem var(--body);background:var(--card);border:1px solid var(--line);box-shadow:0 6px 16px -8px rgba(19,33,61,.35);will-change:transform;z-index:0}
+.rc{position:relative;z-index:1;background:#fff;color:#1d2b4a;border-radius:6px 22px 6px 22px;padding:1.6rem 1.6rem 1.4rem;box-shadow:0 30px 60px -25px rgba(19,33,61,.5);transform:rotate(-2.5deg);border-top:8px solid var(--blue)}
+.rc h3{font-size:1.2rem}.rc small{color:#5b6b88;font-size:.9rem}
+.row{display:grid;grid-template-columns:5.2rem 1fr 4.4rem;gap:.8rem;align-items:center;margin-top:1rem;font-weight:600;font-size:.98rem}
+.trk{height:10px;background:#e8edf7;border-radius:9px;position:relative;overflow:hidden}
+.trk b{position:absolute;inset:0 auto 0 0;background:var(--blue);border-radius:9px;width:0;transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+.trk b.o{background:#c5cee3;z-index:0}.trk b.n{z-index:1}
+.row span:last-child{text-align:right;font-variant-numeric:tabular-nums}.row s{color:#8a97b0;font-weight:500}
+.stamp{position:absolute;right:-1rem;bottom:-1.6rem;width:6.6rem;height:6.6rem;border:4px solid var(--red);border-radius:50%;color:var(--red);display:grid;place-items:center;text-align:center;font:800 1.9rem/1 var(--disp);transform:rotate(14deg) scale(3);opacity:0;background:rgba(255,255,255,.7)}
+.stamp small{display:block;font:600 .72rem var(--body);color:var(--red)}
+.go .stamp{animation:slam .5s .9s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes slam{to{transform:rotate(14deg) scale(1);opacity:1}}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.chip{display:none}}
+/* subjects */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.6rem;margin-top:2.5rem}
+.sc{background:var(--card);padding:1.8rem;border:1px solid var(--line);display:flex;flex-direction:column;gap:.8rem}
+.sc:nth-child(1){border-radius:24px 24px 6px 24px;border-top:6px solid var(--blue)}
+.sc:nth-child(2){border-radius:6px 24px 24px 24px;border-top:6px solid var(--amber)}
+.sc:nth-child(3){border-radius:24px 6px 24px 24px;border-top:6px solid var(--mint)}
+.sc .fee{font:800 2rem var(--disp);color:var(--ink)}.sc .fee small{font:500 .95rem var(--body);color:var(--mute)}
+.sc ul{list-style:none;padding:0;color:var(--mute);font-size:1rem}.sc li{padding:.3rem 0;border-top:1px solid var(--line)}
+/* method */
+.method{background:var(--card);border-block:1px solid var(--line)}
+.mw{display:grid;grid-template-columns:1fr 1fr;gap:6vw;margin-top:2rem}
+.nb{position:sticky;top:15vh;align-self:start;background:#fbfcff;color:#1d2b4a;border-radius:6px 20px 20px 6px;padding:2.2rem 1.8rem 2rem 4rem;box-shadow:0 30px 60px -28px rgba(19,33,61,.55);background-image:linear-gradient(#dbe4f5 1px,transparent 1px),linear-gradient(90deg,#dbe4f5 1px,transparent 1px);background-size:28px 28px;min-height:26rem;border-left:4px solid #e9a3a6}
+.nb:before{content:"";position:absolute;left:1.2rem;top:1.6rem;bottom:1.6rem;width:1.1rem;background:radial-gradient(circle,#c9d3e8 40%,transparent 42%) 0 0/100% 3.2rem}
+.nb h3{font:600 1.1rem var(--body);color:#5b6b88;margin-bottom:1rem}
+.ln{font:600 1.75rem/1.5 var(--hand);margin:.15rem 0;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.5,0,.2,1)}
+.ln.on{clip-path:inset(0 0 0 0)}
+.hl{background:linear-gradient(transparent 58%,rgba(255,194,71,.8) 58%)}
+.fin{margin-top:1rem;font-size:2.1rem;color:var(--blue);border:3px solid var(--red);border-radius:50% 45% 55% 40%;padding:.2rem 1.2rem;display:inline-block}
+.well{color:var(--red);font-size:1.6rem}
+.stps{display:flex;flex-direction:column}
+.stp{min-height:62vh;padding-top:8vh;opacity:.35;transition:opacity .4s}.stp.on{opacity:1}
+.stp b{font:800 3.4rem var(--disp);color:var(--amber);-webkit-text-stroke:1.5px var(--ink);display:block;line-height:1}
+.stp h3{margin:.6rem 0}
+@media(max-width:860px){.mw{grid-template-columns:1fr}.nb{top:68px;z-index:2;min-height:0;padding:1.2rem 1rem 1rem 3rem}.ln{font-size:1.35rem}.fin{font-size:1.5rem}.stp{min-height:48vh}}
+/* results */
+.res{max-width:880px;margin-top:2.5rem;display:grid;gap:1.3rem}
+.rr{display:grid;grid-template-columns:9rem 1fr 6.5rem;gap:1rem;align-items:center;font-weight:600}
+.rr .trk{height:16px;background:color-mix(in srgb,var(--ink) 10%,transparent)}
+.rr .trk b.o{background:color-mix(in srgb,var(--ink) 28%,transparent)}
+.rr span:last-child{text-align:right;font-variant-numeric:tabular-nums}.rr small{display:block;font-weight:400;color:var(--mute);font-size:.88rem}
+.note{font-size:.88rem;margin-top:1.4rem}
+.stats{display:flex;flex-wrap:wrap;gap:2.5rem 5rem;margin-top:3.5rem}
+.stats div{font:800 clamp(3rem,7vw,5rem) var(--disp);line-height:1;color:var(--blue)}.stats span{display:block;font:500 1rem var(--body);color:var(--mute);margin-top:.4rem}
+@media(max-width:640px){.rr{grid-template-columns:1fr 5rem}.rr .trk{grid-column:1/-1;order:3}}
+/* faculty */
+.fac{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.4rem;margin-top:2.5rem}
+.fc{display:grid;gap:.4rem}
+.av{width:7.5rem;height:9rem;border-radius:99px 99px 12px 12px;display:grid;place-items:center;font:800 2.4rem var(--disp);color:#fff;margin-bottom:.8rem}
+.fc:nth-child(1) .av{background:linear-gradient(160deg,#2f5bea,#1b34a0)}.fc:nth-child(2) .av{background:linear-gradient(160deg,#22a67e,#0e6a50)}.fc:nth-child(3) .av{background:linear-gradient(160deg,#f08a3c,#b9531a)}
+.fc p{font-size:1rem}
+/* parents */
+.par{background:var(--blue);color:#fff;border-radius:0}
+.par h2,.par p,.par li{color:#fff}.par ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-top:2rem}
+.par li{border-top:2px solid rgba(255,255,255,.5);padding-top:1rem;font-size:1.05rem}.par li b{display:block;font:800 1.3rem var(--disp);margin-bottom:.2rem}
+.q{margin-top:3rem;font:600 1.5rem/1.4 var(--disp);max-width:40ch}.q small{display:block;font:400 1rem var(--body);opacity:.85;margin-top:.6rem}
+/* form */
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
+form{background:var(--card);border:1px solid var(--line);border-radius:24px 6px 24px 24px;padding:2rem;display:grid;gap:1.1rem;box-shadow:0 20px 50px -30px rgba(19,33,61,.5)}
+label{font-weight:600;font-size:.95rem;display:grid;gap:.4rem}
+input,select{font:400 1rem var(--body);padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.ok{display:none;color:var(--mint);font-weight:600}
+@media(max-width:860px){.cta{grid-template-columns:1fr}}
+footer{padding:2rem 6vw;border-top:1px solid var(--line);color:var(--mute);font-size:.92rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.stamp{opacity:1;transform:rotate(14deg)}.ln{clip-path:none}.stp{opacity:1}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<header><a class="logo" href="#top"><i>Ax</i>Axiom Tuition</a><nav><a href="#classes">Classes</a><a href="#method">Method</a><a href="#results">Results</a><a href="#faculty">Faculty</a><a class="pill" href="#enrol">Free assessment</a></nav></header>
+
+<main id="top">
+<section class="hero" id="hero">
+<span class="chip" data-s=".18" style="left:46%;top:19%">Maths</span><span class="chip" data-s=".3" style="left:5%;top:77%">Physics</span><span class="chip" data-s=".12" style="left:40%;top:84%">Chemistry</span><span class="chip" data-s=".24" style="left:56%;top:11%">English</span><span class="chip" data-s=".36" style="left:3%;top:15%">Computer Science</span>
+<div style="position:relative;z-index:1"><h1>Marks follow understanding. We teach the understanding.</h1>
+<p>Small batches of eight, qualified teachers and a written plan for every student from Class 8 to Plus Two. Parents get a progress note every week.</p>
+<div class="btns"><a class="pill" href="#enrol">Book a free assessment</a><a class="pill alt" href="#method">See how we teach</a></div></div>
+<div class="rc" id="rc"><h3>Term 2 progress report</h3><small>Riya, Class 10 (sample report)</small>
+<div class="row"><span>Maths</span><div class="trk"><b class="o" data-w="45"></b><b class="n" data-w="86"></b></div><span><s>45</s> 86</span></div>
+<div class="row"><span>Physics</span><div class="trk"><b class="o" data-w="52"></b><b class="n" data-w="81"></b></div><span><s>52</s> 81</span></div>
+<div class="row"><span>Chemistry</span><div class="trk"><b class="o" data-w="58"></b><b class="n" data-w="84"></b></div><span><s>58</s> 84</span></div>
+<div class="row"><span>English</span><div class="trk"><b class="o" data-w="70"></b><b class="n" data-w="88"></b></div><span><s>70</s> 88</span></div>
+<div class="stamp"><div>+41<small>in Maths</small></div></div></div>
+</section>
+
+<section id="classes"><h2>Classes for every stage</h2><p>Three tracks, one teaching method. Every batch is capped at eight students so nobody hides at the back.</p>
+<div class="grid3">
+<div class="sc"><h3>Class 8 to 10</h3><p>Build the base before the board exams.</p><div class="fee">₹2,500<small> / month</small></div><ul><li>Maths, Science and English</li><li>CBSE, ICSE and Kerala State</li><li>Weekly test and doubt hour</li></ul></div>
+<div class="sc"><h3>Plus One and Plus Two</h3><p>Concepts first, then speed.</p><div class="fee">₹3,500<small> / month</small></div><ul><li>Maths, Physics, Chemistry, Biology</li><li>Computer Science available</li><li>Monthly model exams</li></ul></div>
+<div class="sc"><h3>Entrance preparation</h3><p>KEAM, JEE Main and NEET.</p><div class="fee">₹4,500<small> / month</small></div><ul><li>Evening and weekend batches</li><li>Timed mock tests every week</li><li>Rank-wise analysis report</li></ul></div>
+</div></section>
+
+<section class="method" id="method"><h2>We show our working</h2><p>Every student follows the same four steps. Scroll to see how Riya went from 45% to 86% in Maths.</p>
+<div class="mw"><div class="nb" id="nb"><h3>Riya, Class 10 Maths</h3>
+<p class="ln on"><span class="hl">Start: 45%</span> &nbsp; Goal: 85%</p>
+<p class="ln">1. Diagnose: 5 weak topics found</p>
+<p class="ln">2. Plan: 8 weeks, 3 sessions a week</p>
+<p class="ln">3. Practice: 40 problems every week</p>
+<p class="ln">4. Review: weekly test and feedback</p>
+<p class="ln"><span class="fin">45% + understanding = 86%</span> <span class="well">Well done!</span></p></div>
+<div class="stps" id="stps">
+<div class="stp on"><b>1</b><h3>Diagnose</h3><p>A 60-minute assessment finds the exact topics that cost marks, not just the chapters the student says are hard.</p></div>
+<div class="stp"><b>2</b><h3>Plan</h3><p>The teacher writes an eight-week plan on one page. Parents get a copy and so does the student.</p></div>
+<div class="stp"><b>3</b><h3>Practise</h3><p>Short explanations, then problems, with a teacher checking every step. Mistakes are corrected on the spot.</p></div>
+<div class="stp"><b>4</b><h3>Review</h3><p>A weekly test and a five-line progress note. If a topic is still weak, it goes back into next week's plan.</p></div>
+</div></div></section>
+
+<section id="results"><h2>Results you can check</h2><p>Marks before joining and after one term, from a sample batch. Real centres should publish these with parents' permission.</p>
+<div class="res" id="res">
+<div class="rr"><span>A.R., Class 10<small>Maths</small></span><div class="trk"><b class="o" data-w="45"></b><b class="n" data-w="86"></b></div><span>45 to 86</span></div>
+<div class="rr"><span>M.S., Class 9<small>Science</small></span><div class="trk"><b class="o" data-w="38"></b><b class="n" data-w="74"></b></div><span>38 to 74</span></div>
+<div class="rr"><span>N.K., Plus Two<small>Physics</small></span><div class="trk"><b class="o" data-w="51"></b><b class="n" data-w="83"></b></div><span>51 to 83</span></div>
+<div class="rr"><span>J.T., Plus One<small>Chemistry</small></span><div class="trk"><b class="o" data-w="47"></b><b class="n" data-w="79"></b></div><span>47 to 79</span></div>
+</div>
+<div class="stats"><div data-n="8">0<span>students in every batch</span></div><div data-n="14">0<span>years teaching</span></div><div data-n="320">0<span>students taught</span></div></div></section>
+
+<section id="faculty"><h2>The teachers</h2><p>Every teacher is a subject specialist who takes the class personally.</p>
+<div class="fac">
+<div class="fc"><div class="av">SM</div><h3>Sreeja Menon</h3><p>Maths, Class 8 to Plus Two. M.Sc, B.Ed, 12 years of teaching.</p></div>
+<div class="fc"><div class="av">AV</div><h3>Arun Varghese</h3><p>Physics, Plus One, Plus Two and entrance. M.Sc, 9 years of teaching.</p></div>
+<div class="fc"><div class="av">FN</div><h3>Fathima Nazir</h3><p>Chemistry and Biology, Class 9 to Plus Two. M.Sc, 8 years of teaching.</p></div>
+</div></section>
+
+<section class="par"><h2>What parents get</h2>
+<ul><li><b>A weekly note</b>Five lines on what was taught, how your child did and what comes next.</li><li><b>A monthly meeting</b>Fifteen minutes with the teacher, in person or by phone.</li><li><b>A free doubt hour</b>Every Saturday morning, open to all enrolled students.</li><li><b>Honest feedback</b>If a topic is not improving, we tell you early and change the plan.</li></ul>
+<p class="q">“She stopped dreading maths. The weekly note told me exactly where she stood.”<small>Parent of a Class 10 student (sample quote)</small></p></section>
+
+<section class="cta" id="enrol"><div><h2>Start with a free assessment</h2><p>One hour with a teacher, a written report on where your child stands, and a plan. No fee and no obligation to join.</p></div>
+<form id="f"><label>Student's name<input name="n" required autocomplete="off"></label><label>Class<select name="c"><option>Class 8 to 10</option><option>Plus One or Plus Two</option><option>Entrance preparation</option></select></label><label>Parent's phone<input name="p" type="tel" inputmode="tel" required></label><button class="pill" type="submit">Request my free assessment</button><p class="ok" id="ok" role="status"></p></form></section>
+</main>
+<footer>Axiom Tuition Centre is a demo concept created to showcase a scroll-driven website. Names, results, fees and quotes are placeholders.</footer>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},all=function(s){return [].slice.call(document.querySelectorAll(s))};
+function clamp(v){return Math.max(0,Math.min(1,v))}
+var bar=$('#bar'),chips=all('.chip'),lns=all('.ln'),stp=all('.stp'),meth=$('.method');
+function frame(){var y=window.scrollY,H=window.innerHeight,mx=document.documentElement.scrollHeight-H;
+bar.style.transform='scaleX('+(mx>0?y/mx:0)+')';
+chips.forEach(function(c){c.style.transform='translateY('+(-y*c.dataset.s)+'px)'});
+var r=meth.getBoundingClientRect(),p=clamp((H*.35-r.top-H*.15)/(r.height-H*.7)),n=1+Math.floor(p*5.4);
+lns.forEach(function(l,i){l.classList.toggle('on',i<n)});
+var k=Math.min(3,Math.floor(p*4.2));stp.forEach(function(s,i){s.classList.toggle('on',i===k)})}
+var tk=false;window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;frame()})}},{passive:true});frame();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var t=e.target;io.unobserve(t);
+if(t.dataset.n){var n=+t.dataset.n,i=0,id=setInterval(function(){i++;t.firstChild.nodeValue=Math.round(n*i/36);if(i>=36)clearInterval(id)},30)}
+else{t.classList.add('go');all('#'+t.id+' b[data-w]').forEach(function(b,j){setTimeout(function(){b.style.width=b.dataset.w+'%'},(j%2?500:0)+Math.floor(j/2)*140)})}})},{threshold:.4});
+['#rc','#res'].forEach(function(s){io.observe($(s))});all('.stats div').forEach(function(e){io.observe(e)});
+$('#f').addEventListener('submit',function(e){e.preventDefault();var o=$('#ok');o.style.display='block';o.textContent='Thank you, '+this.n.value+'. A teacher will call within one working day. (Demo form, nothing was sent.)';this.reset()});
+})();
+</script>
+</body>
+</html>

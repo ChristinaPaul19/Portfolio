@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forge Strength Studio — Stronger than yesterday</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6e3dc;--ink:#16181b;--mute:#4b5057;--card:#f4f2ec;--line:rgba(22,24,27,.22);--y:#f4c20d;
+--disp:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--body:'Barlow','Segoe UI',Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16181b;--ink:#ece9e1;--mute:#a9adb3;--card:#1f2226;--line:rgba(236,233,225,.22)}}
+:root[data-theme="dark"]{--bg:#16181b;--ink:#ece9e1;--mute:#a9adb3;--card:#1f2226;--line:rgba(236,233,225,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 18px/1.65 var(--body);overflow-x:hidden;padding-bottom:84px}
+h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:.95;text-transform:uppercase;letter-spacing:.01em}
+h2{font-size:clamp(2.6rem,8vw,6rem)}
+p{color:var(--mute);max-width:56ch}
+a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(12px + env(safe-area-inset-top,0px)) 5vw 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--disp);font-weight:800;font-size:1.7rem;letter-spacing:.08em;color:var(--ink);text-decoration:none}
+.hud{display:flex;gap:1.6rem;align-items:baseline;font-family:var(--disp);font-weight:600;letter-spacing:.06em}
+.hud b{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink)}
+.hud span{color:var(--mute);font-size:1.05rem}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--y);transform-origin:0 50%;transform:scaleX(0)}
+.btn{display:inline-block;background:var(--y);color:#16181b;font-family:var(--disp);font-weight:800;font-size:1.3rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:.9rem 2rem;border:3px solid #16181b;box-shadow:6px 6px 0 #16181b;transition:.15s}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 #16181b}
+.haz{height:14px;background:repeating-linear-gradient(-45deg,#16181b 0 14px,#f4c20d 14px 28px)}
+/* hero */
+.hero{min-height:100vh;display:grid;align-content:center;padding:18vh 6vw 8vh;position:relative;overflow:hidden}
+.plate{position:absolute;right:-9vw;top:14vh;width:min(62vw,540px);will-change:transform;z-index:0}
+h1{position:relative;z-index:1;font-size:clamp(3.6rem,15vw,12rem);white-space:nowrap}
+h1 span{display:block;will-change:transform}
+.w2{-webkit-text-stroke:3px var(--ink);color:transparent}
+.hero p{position:relative;z-index:1;margin:2rem 0;font-size:1.25rem;color:var(--ink)}
+.hero .btn{position:relative;z-index:1;justify-self:start}
+/* marquee */
+.band{background:var(--y);color:#16181b;overflow:hidden;white-space:nowrap;border-block:3px solid #16181b}
+.mq{display:inline-block;font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);text-transform:uppercase;padding:.4rem 0;will-change:transform}
+.mq i{font-style:normal;margin:0 1.4rem}
+section{padding:14vh 6vw}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:6vw;align-items:end}
+.two p+p{margin-top:1rem}
+@media(max-width:800px){.two{grid-template-columns:1fr;gap:2rem}}
+/* programs */
+.hz{padding:0}
+.pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:70px}
+.pin h2{padding:0 6vw;margin-bottom:2.2rem}
+.trk{display:flex;gap:2rem;padding:0 6vw;will-change:transform}
+.pc{flex:0 0 min(80vw,430px);height:min(52vh,430px);background:var(--card);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:1.6rem;display:flex;flex-direction:column;justify-content:space-between}
+.pc .n{font-family:var(--disp);font-weight:800;font-size:5.5rem;line-height:.8;color:var(--y);-webkit-text-stroke:2px var(--ink)}
+.pc h3{font-size:2.3rem;margin:.6rem 0}
+.pc small{font:600 1rem var(--disp);letter-spacing:.06em;color:var(--ink)}
+.rm .hz{height:auto!important}.rm .pin{position:static;height:auto;padding-bottom:3rem}.rm .trk{overflow-x:auto;padding-bottom:2rem}
+/* stats */
+.stats{background:#16181b;color:#ece9e1;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2.5rem}
+.stats div{font-family:var(--disp);font-weight:800;font-size:clamp(3.6rem,9vw,7rem);line-height:.9;color:var(--y)}
+.stats span{display:block;font:500 1.05rem var(--body);color:#c9ccd1;margin-top:.5rem}
+/* timetable */
+.tt{overflow-x:auto;margin-top:2.5rem}
+table{width:100%;min-width:560px;border-collapse:collapse}
+th,td{text-align:left;padding:1rem .8rem;border-bottom:1px solid var(--line)}
+th{font:800 1.1rem var(--disp);letter-spacing:.08em;text-transform:uppercase;border-bottom:3px solid var(--ink)}
+td:first-child{font:800 1.8rem var(--disp);white-space:nowrap}
+td:nth-child(2){font-weight:600;color:var(--ink)}
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:3rem}
+.pl-c{background:var(--card);border:3px solid var(--ink);padding:2rem;display:flex;flex-direction:column;gap:1rem}
+.pl-c.hot{background:var(--y);color:#16181b;box-shadow:8px 8px 0 var(--ink)}
+.pl-c.hot p,.pl-c.hot li{color:#16181b}
+.pl-c h3{font-size:2rem}
+.pl-c .pr{font:800 3.6rem var(--disp);line-height:1}.pl-c .pr small{font:600 1.1rem var(--body)}
+.pl-c ul{list-style:none;padding:0;color:var(--mute)}.pl-c li{padding:.35rem 0;border-top:1px solid var(--line)}
+.pl-c li:before{content:"+ ";font-weight:800}
+.end{text-align:center;display:grid;justify-items:center;gap:2rem}
+.end p{margin:0 auto}
+footer{padding:2.5rem 6vw;border-top:1px solid var(--line);color:var(--mute);font-size:.95rem}
+/* barbell */
+.bb{position:fixed;left:0;right:0;bottom:0;z-index:15;height:calc(66px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);pointer-events:none;background:linear-gradient(transparent,var(--bg) 60%)}
+.bb svg{width:100%;height:66px;display:block}
+.pl{transform-box:fill-box;transform-origin:center;transform:scaleY(0);opacity:0;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .2s}
+.pl.on{transform:none;opacity:1}
+@media(max-width:600px){.hud span{display:none}.logo{font-size:1.4rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><a class="logo" href="#top">FORGE</a><div class="hud" aria-hidden="true"><span id="set">SET 1/5</span><span>REPS</span><b id="rep">000</b></div><div class="prog" id="bar"></div></header>
+
+<main id="top">
+<section class="hero"><svg class="plate" id="plate" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="195" fill="#252a31"/><circle cx="200" cy="200" r="178" fill="none" stroke="#f4c20d" stroke-width="10" stroke-dasharray="3 14.2"/><circle cx="200" cy="200" r="150" fill="none" stroke="#f4c20d" stroke-width="5"/><circle cx="200" cy="200" r="62" fill="#e6e3dc"/><circle cx="200" cy="200" r="26" fill="#252a31"/><text x="200" y="118" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="54" fill="#f4c20d">20 KG</text></svg>
+<h1><span class="w1">Stronger</span><span class="w2">than</span><span class="w3">yesterday</span></h1>
+<p>Coach-led strength and conditioning on a 4,000 sq ft floor. Real racks, real plates, and a coach who learns your name in the first week.</p>
+<a class="btn" href="#plans">Book a free session</a></section>
+
+<div class="haz"></div><div class="band" aria-hidden="true"><div class="mq" id="mq">Show up<i>+</i>Add a plate<i>+</i>One more rep<i>+</i>No shortcuts<i>+</i>Show up<i>+</i>Add a plate<i>+</i>One more rep<i>+</i>No shortcuts<i>+</i></div></div><div class="haz"></div>
+
+<section id="floor"><div class="two"><h2>One floor.<br>No gimmicks.</h2><div><p>Forge is a small, serious gym. Eight power racks, two platforms, a turf lane for sleds and a boxing corner, with no rows of mirrors and no queue for a barbell.</p><p>Every new member starts with a movement assessment and a written plan. Coaches are on the floor for every session, from the 5:30 am lifters to the late-evening regulars.</p></div></div></section>
+
+<section class="hz" id="programs"><div class="pin"><h2>Four ways to train</h2><div class="trk" id="trk">
+<div class="pc"><div><div class="n">01</div><h3>Strength Floor</h3><p>Squat, press, pull and hinge with a coach-written plan that adds weight week by week.</p></div><small>3 sessions a week / 60 min</small></div>
+<div class="pc"><div><div class="n">02</div><h3>Conditioning</h3><p>Sleds, rowers and kettlebell circuits built to raise your engine without wrecking your joints.</p></div><small>Small groups of 10 / 45 min</small></div>
+<div class="pc"><div><div class="n">03</div><h3>Boxing Basics</h3><p>Stance, footwork and combinations on the bag, with pad work in pairs. No sparring unless you ask.</p></div><small>Beginners welcome / 50 min</small></div>
+<div class="pc"><div><div class="n">04</div><h3>Mobility Reset</h3><p>Slow, guided work on hips, shoulders and spine to keep you training for years, not weeks.</p></div><small>Twice a week / 40 min</small></div>
+</div></div></section>
+
+<section class="stats" id="stats"><div data-n="4000">0<span>sq ft of training floor</span></div><div data-n="12">0<span>certified coaches</span></div><div data-n="38">0<span>sessions every week</span></div><div data-n="900">0<span>members and counting</span></div></section>
+
+<section id="schedule"><h2>The week at Forge</h2><p style="margin-top:1rem">Open Monday to Saturday, 5:30 am to 9:30 pm. Sunday is for recovery.</p>
+<div class="tt"><table><thead><tr><th>Time</th><th>Session</th><th>Days</th><th>Coach</th></tr></thead><tbody>
+<tr><td>5:30 AM</td><td>Strength Floor</td><td>Mon, Wed, Fri</td><td>Arjun</td></tr>
+<tr><td>7:00 AM</td><td>Conditioning</td><td>Tue, Thu, Sat</td><td>Meera</td></tr>
+<tr><td>9:00 AM</td><td>Mobility Reset</td><td>Tue, Fri</td><td>Anjali</td></tr>
+<tr><td>6:00 PM</td><td>Boxing Basics</td><td>Mon, Wed, Thu</td><td>Rahul</td></tr>
+<tr><td>7:30 PM</td><td>Strength Floor</td><td>Mon to Sat</td><td>Arjun, Rahul</td></tr>
+</tbody></table></div></section>
+
+<section id="plans"><h2>Pick your plate</h2>
+<div class="plans">
+<div class="pl-c"><h3>Monthly</h3><div class="pr">₹1,499<small> / month</small></div><ul><li>Full floor access</li><li>All group sessions</li><li>Movement assessment</li></ul></div>
+<div class="pl-c hot"><h3>Quarterly</h3><div class="pr">₹3,999<small> / 3 months</small></div><ul><li>Everything in Monthly</li><li>Written 12-week plan</li><li>Two coach check-ins</li></ul></div>
+<div class="pl-c"><h3>Annual</h3><div class="pr">₹12,999<small> / year</small></div><ul><li>Everything in Quarterly</li><li>Four personal sessions</li><li>Guest pass every month</li></ul></div>
+</div></section>
+
+<section class="end"><h2>Your first session is free.</h2><p>Walk in, meet a coach and train on the house. Wear trainers and bring a water bottle.</p><a class="btn" href="#top">Claim your session</a></section>
+</main>
+<footer>Forge Strength Studio is a demo concept created to showcase a scroll-driven website.</footer>
+
+<div class="bb" aria-hidden="true"><svg viewBox="0 0 1000 66" preserveAspectRatio="xMidYMax meet"><rect x="30" y="31" width="940" height="4" fill="#8a9099"/><rect x="318" y="26" width="364" height="14" rx="3" fill="#5b6169" opacity=".0"/><rect x="326" y="22" width="8" height="22" fill="#3a3f46"/><rect x="666" y="22" width="8" height="22" fill="#3a3f46"/><rect x="40" y="29" width="285" height="8" fill="#b7bcc3"/><rect x="675" y="29" width="285" height="8" fill="#b7bcc3"/><g id="plates" transform="translate(0,2)"></g></svg></div>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},all=function(s){return [].slice.call(document.querySelectorAll(s))};
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;if(rm)document.documentElement.classList.add('rm');
+var C=['#c8372d','#2f6db5','#f4c20d','#2e8b57','#e8e8e8'],Hh=[58,50,44,36,28],ns='http://www.w3.org/2000/svg',g=$('#plates'),pl=[];
+for(var i=0;i<5;i++)[0,1].forEach(function(s){var x=318-i*14,r=document.createElementNS(ns,'rect');
+r.setAttribute('x',s?1000-x-10:x);r.setAttribute('y',31-Hh[i]/2);r.setAttribute('width',10);r.setAttribute('height',Hh[i]);r.setAttribute('rx',2);r.setAttribute('fill',C[i]);r.setAttribute('class','pl');g.appendChild(r);pl.push([r,i])});
+var hz=$('#programs'),trk=$('#trk'),mq=$('#mq'),w=[$('.w1'),$('.w2'),$('.w3')],pt=$('#plate'),rep=$('#rep'),setn=$('#set'),bar=$('#bar');
+var d=0,mw=0;function clamp(v){return Math.max(0,Math.min(1,v))}
+function size(){d=Math.max(0,trk.scrollWidth-window.innerWidth+window.innerWidth*.06);if(!rm)hz.style.height=(window.innerHeight+d)+'px';mw=mq.scrollWidth/2}
+function frame(){
+var y=window.scrollY,H=window.innerHeight,mx=document.documentElement.scrollHeight-H,p=mx>0?clamp(y/mx):0;
+bar.style.transform='scaleX('+p+')';
+rep.textContent=('00'+Math.round(p*500)).slice(-3);
+var n=Math.min(5,Math.floor(p*5.4));setn.textContent='SET '+Math.min(5,n+1)+'/5';
+pl.forEach(function(a){a[0].classList.toggle('on',a[1]<n)});
+if(rm)return;
+w[0].style.transform='translateX('+(-y*.35)+'px)';w[1].style.transform='translateX('+(y*.45)+'px)';w[2].style.transform='translateX('+(-y*.25)+'px)';
+pt.style.transform='rotate('+(y*.12)+'deg)';
+mq.style.transform='translateX('+(-((y*.8)%mw))+'px)';
+var r=hz.getBoundingClientRect();trk.style.transform='translateX('+(-clamp(-r.top/(hz.offsetHeight-H))*d)+'px)';
+}
+mq.innerHTML+=mq.innerHTML;size();
+var tk=false;function req(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;frame()})}}
+window.addEventListener('scroll',req,{passive:true});window.addEventListener('resize',function(){size();req()});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){size();frame()});frame();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target,n=+el.dataset.n,t=0,id=setInterval(function(){t++;el.firstChild.nodeValue=Math.round(n*t/40).toLocaleString('en-IN');if(t>=40)clearInterval(id)},28);io.unobserve(el)}})},{threshold:.5});
+all('.stats div').forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
